@@ -24,7 +24,7 @@ bg-white border-bottom shadow-sm">
 
         <a class="p-2 text-dark" href="{% url 'polls_all' %}">Perguntas</a>
         <a class="p-2 text-dark" href="{% url 'sobre' %}">Sobre</a>
-        
+
     </div>
 </main>
 {% endblock %}
@@ -32,6 +32,7 @@ bg-white border-bottom shadow-sm">
 <div class="container">
     {% block content %}
     <p>Conteúdo padrão...</p>
+    {% include 'perguntas.html' %}
     {% endblock content %}
 </div>
 {% endblock %}
