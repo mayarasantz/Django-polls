@@ -27,6 +27,8 @@ def ultimas_perguntas(request):
     return render(request, 'perguntas_recentes.html', context)
 
 
+
+
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 
@@ -35,3 +37,24 @@ class QuestionCreateView(CreateView):
     template_name = 'polls/question_form.html'
     fields = ('question_text', 'pub_date', )
     success_url = reverse_lazy('polls_list')
+
+def get_context_data(self, **kwargs):
+    context = super(QuestionCreateView, self).get_context_data(**kwargs)
+    context['form_title'] = 'Criando uma pergunta'
+
+    return context
+
+
+from django.views.generic.edit import CreateView, UpdateView
+
+class QuestionUpdateView(UpdateView):
+    model = Question
+    template_name = 'polls/question_form.html'
+    fields = ('question_text', 'pub_date', )
+    success_url = reverse_lazy('polls_list')
+
+def get_context_data(self, **kwargs):
+    context = super(QuestionUpdateView, self).get_context_data(**kwargs)
+    context['form_title'] = 'Editando a pergunta'
+    
+    return context
