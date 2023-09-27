@@ -18,6 +18,11 @@ Mega Enquetes
             Editar
         </a>
 
+        <a href="{% url 'poll_delete' pk=question.id %}" class="link-secondary">
+            Excluir
+        </a>
+            
+
     </p>
 </article>
 {% endfor %}
