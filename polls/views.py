@@ -65,7 +65,10 @@ def get_context_data(self, **kwargs):
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 
-class QuestionDeleteView(DeleteView):
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class QuestionDeleteView(LoginRequiredMixin, DeleteView):
     model = Question
     template_name = 'polls/question_confirm_delete_form.html'
     success_url = reverse_lazy('polls_all') 
