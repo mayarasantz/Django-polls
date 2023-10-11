@@ -10,4 +10,9 @@ urlpatterns = [
     path('', include('accounts.urls')), # rotas personalizadas como accounts/signup
     path('accounts/', include('django.contrib.auth.urls')), # rotas padrão fornecida pelo Django
 
+    path('account/<int:pk>/edit',
+        views.AccountUpdateView.as_view(),
+        name="account_edit"
+    ),
+
 ]
