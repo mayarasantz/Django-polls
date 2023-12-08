@@ -1,20 +1,44 @@
-{% extends 'polls/_layout1.html' %}
-<!-- herda tudo que já tem em _layout1.html -->
+{% extends 'polls/_base.html' %}
+
+
 {% block content %}
-<!-- substitui o bloco content em _layout1.html -->
-<div class="card">
-    <div class="card-header">
-        <h5 class="card-title">Criando uma Pergunta</h5>
+    <h2>Cadastrar Enquete</h2>
+
+
+    <form method="post">
+        {% csrf_token %}
+
+
+        {{ form.as_p }}
+
+
+    {% if object %}
+    <div class="mt-5">
+        <h3>Alternativas de Pergunta</h3>
+        <a href="{% url 'choice_add' pk=object.id %}" class="btn btn-primary mb-5">
+            + Incluir Alternativa
+        </a>
+        <ul>
+        {% for choice in question_choices %}
+            <li>
+                {{ choice.choice_text }} &nbsp;
+                <a href="{% url 'choice_edit' pk=choice.id %}" class="link-secondary">
+                    Editar
+                </a>
+                <a href="{% url 'choice_delete' pk=choice.id %}" class="link-secondary">
+                    Excluir
+                </a>
+            </li>
+        {% empty %}
+            <li>Não existem alternativas para a pergunta</li>
+        {% endfor %}
+        </ul>
     </div>
-    <div class="card-body">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-success">Salvar</button>
-        </form>
-    </div>
-</div>
-{% endblock %}
-<!-- fecha o bloco content -->
+    {% endif %}
+       
+        <input type="submit">
+    </form>
+{% endblock content %}
+
 
 {{ form_title }}

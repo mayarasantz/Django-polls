@@ -1,4 +1,4 @@
-{% extends '_layout1.html' %} {# herda tudo que já tem em _layout1.html #}
+{% extends 'polls/_layout1.html' %} {# herda tudo que já tem em _layout1.html #}
 {% block content %} {# substitui o bloco content em _layout1.html #}
 <div class="card">
     <div class="card-header">
@@ -17,7 +17,6 @@
             </li>
             {% endfor %}
         </ul>
-
         <p class="count font-weight-bold">
             Total de {{ page_obj.paginator.count }} pergunta(s).
         </p>
@@ -55,6 +54,7 @@
                 <li class="page-item">
                     <a class="page-link" href="?page={{ page_obj.next_page_number }}">
                         Próxima
+                        2/3
                     </a>
                 </li>
                 <li class="page-item">
@@ -73,7 +73,8 @@
             </ul>
         </nav>
         {% endif %} {# fim do paginador #}
-
     </div>
 </div>
 {% endblock %} {# fecha o bloco content #}
+
+
